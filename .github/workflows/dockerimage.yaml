@@ -36,7 +36,7 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with:
           image: tonistiigi/binfmt:latest
-          platforms: arm/v6
+          platforms: arm64,arm
 
       - name: Set up Docker Buildx
         id: buildx
