@@ -1,0 +1,8 @@
+mqtt_host: "mqtt_hostname"
+mqtt_port: 1883
+mqtt_user: "username"
+mqtt_password: "password"
+mqtt_client_id: "my_client_id"
+topic: "media_player/lg_tv/turn_on"
+tv_mac_adddress: "device_mac_address"
+  
