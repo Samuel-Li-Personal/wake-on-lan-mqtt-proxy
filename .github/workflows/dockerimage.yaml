@@ -32,7 +32,9 @@ jobs:
 
       - name: Extract sanitised branch name
         shell: bash
-        run: source env.sh && echo "##[set-output name=sanitised_branch;]$(get_sanitised_branch_name)"
+        # run: source scripts/env.sh && echo "##[set-output name=sanitised_branch;]$(get_sanitised_branch_name)"
+        run: |
+          echo "::set-output name=sanitised_branch_name::$(source scripts/env.sh && get_sanitised_branch_name')"
         id: extract_branch
 
       - name: Build and push
@@ -43,7 +45,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wake-on-lan-mqtt-proxy:${{steps.extract_branch.outputs.sanitised_branch}}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wake-on-lan-mqtt-proxy:${{steps.extract_branch.outputs.sanitised_branch_name}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
