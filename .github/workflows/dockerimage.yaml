@@ -34,7 +34,7 @@ jobs:
         shell: bash
         # run: source scripts/env.sh && echo "##[set-output name=sanitised_branch;]$(get_sanitised_branch_name)"
         run: |
-          echo "::set-output name=sanitised_branch_name::$(source scripts/env.sh && get_sanitised_branch_name')"
+          echo "::set-output name=sanitised_branch_name::$(source scripts/env.sh && get_sanitised_branch_name)"
         id: extract_branch
 
       - name: Build and push
