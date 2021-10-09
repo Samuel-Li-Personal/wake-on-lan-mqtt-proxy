@@ -32,7 +32,7 @@ jobs:
 
       - name: Extract sanitised branch name
         shell: bash
-        run: echo "##[set-output name=sanitised_branch;]$(get_sanitised_branch_name)"
+        run: source env.sh && echo "##[set-output name=sanitised_branch;]$(get_sanitised_branch_name)"
         id: extract_branch
 
       - name: Build and push
