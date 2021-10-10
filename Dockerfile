@@ -1,6 +1,11 @@
 FROM python:3.9-alpine
 
-# https://docs.docker.com/buildx/working-with-buildx/
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
+
+# https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images
 # BUILDPLATFORM and TARGETPLATFORM env var
 # Note this url may have been updated. Find the latest by browsing http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/
 RUN if [ "$TARGETPLATFORM" = "linux/arm/v6" ] ; then wget -O /tmp/libseccomp2.deb http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb && \
