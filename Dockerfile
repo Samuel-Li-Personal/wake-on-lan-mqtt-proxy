@@ -1,16 +1,13 @@
-# FROM python:3.9-alpine
-FROM python:3.9
+# Couldn't get Alpine image working Docker 20.x on Raspberry Pi
+# https://blog.samcater.com/fix-workaround-rpi4-docker-libseccomp2-docker-20/
+FROM python:3.9-buster
 
+# https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images
+# BUILDPLATFORM and TARGETPLATFORM env var
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
-
-# https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images
-# BUILDPLATFORM and TARGETPLATFORM env var
-# Note this url may have been updated. Find the latest by browsing http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/
-RUN if [ "$TARGETPLATFORM" = "linux/arm/v6" ] ; then wget -O /tmp/libseccomp2.deb http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb && \
-  dpkg -i /tmp/libseccomp2.deb && rm /tmp/libseccomp2.deb ; fi
 
 WORKDIR /app
 
