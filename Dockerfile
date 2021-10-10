@@ -1,6 +1,6 @@
 # Couldn't get Alpine image working Docker 20.x on Raspberry Pi
 # https://blog.samcater.com/fix-workaround-rpi4-docker-libseccomp2-docker-20/
-FROM python:3.9-buster
+FROM python:3.9-slim-buster
 
 # https://docs.docker.com/buildx/working-with-buildx/#build-multi-platform-images
 # BUILDPLATFORM and TARGETPLATFORM env var
