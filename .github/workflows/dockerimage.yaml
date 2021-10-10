@@ -57,7 +57,7 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
-          platforms: linux/arm/v6
+          platforms: linux/arm/v6,amd64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wake-on-lan-mqtt-proxy:${{steps.extract_branch.outputs.sanitised_branch_name}}
 
