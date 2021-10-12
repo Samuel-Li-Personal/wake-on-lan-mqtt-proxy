@@ -5,7 +5,7 @@ from wakeonlan import send_magic_packet
 with open("/app/config/config.yaml", "r") as configfile:
     config = yaml.load(configfile, Loader=yaml.FullLoader)
 
-broker = 'mqtt.local.samuelli.net'
+broker = config['mqtt_host']
 port = 1883
 topic = config['topic']
 client_id = config['mqtt_client_id']

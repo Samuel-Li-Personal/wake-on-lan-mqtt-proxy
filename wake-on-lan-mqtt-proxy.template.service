@@ -1,0 +1,18 @@
+[Unit]
+Description=Wake-on-LAN MQTT Proxy
+After=network.target
+
+# Point WORK_DIR to where your config.yaml is
+# Replace DOCKERHUB_USERNAME with your dockerhub username
+[Service]
+ExecStart=docker run --name wake-on-lan-mqtt-proxy --rm -t --mount type=bind,source="${WORK_DIR}",target=/app/config,readonly -e PYTHONUNBUFFERED=0 ${DOCKERHUB_USERNAME}/wake-on-lan-mqtt-proxy:master
+ExecStop=docker stop MiTemperature2
+WorkingDirectory=${WORK_DIR}
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=WakeOnLanMqttProxy
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
